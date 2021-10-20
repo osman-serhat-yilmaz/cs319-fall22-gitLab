@@ -19,10 +19,21 @@ class MaterialManager:
                 self.carManager.setMaterial(materialType.Carbon)
                 returnText = "Material is changed to Carbon."
 
+            case materialType.Vibranium:
+                self.carManager.setMaterial(materialType.Vibranium)
+                returnText = "Material is changed to Vibranium."
+
             case _:
-                returnText = "Material seletion is invalid."
+                returnText = "Material selection is invalid."
 
         return self._announceMaterial(returnText)
 
     def _announceMaterial(self, text: str) -> bool:
-        return self.announcer(text)
+		returnValue = False
+		try:
+			returnValue = self.announcer(text)
+		except:
+			print("Announcement of material type is failed.")
+			returnValue = False
+		finally:
+			return returnValue
